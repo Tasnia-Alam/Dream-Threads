@@ -440,43 +440,50 @@
     </div>
 
   </section>
-
   <script>
-    function openStudio() {
-      document.getElementById("homePage").style.display = "none";
-      document.getElementById("studioPage").style.display = "block";
-    }
-
-    function returnHome() {
-      document.getElementById("studioPage").style.display = "none";
-      document.getElementById("homePage").style.display = "flex";
-    }
-
-    function changeShirtColor() {
-      const selectedColor =
-        document.getElementById("shirtColor").value;
-
-     document.getElementById("shirt").style.background =
-    selectedColor;
-}
-      function showTemplates() {
-
-  const panel = document.getElementById("templatePanel");
-
-
-  if (panel.style.display === "block") {
-
-    panel.style.display = "none";
-
-  } else {
-
-    panel.style.display = "block";
-
+  function openStudio() {
+    document.getElementById("homePage").style.display = "none";
+    document.getElementById("studioPage").style.display = "block";
   }
 
-}
-  
-  </script>
+  function returnHome() {
+    document.getElementById("studioPage").style.display = "none";
+    document.getElementById("homePage").style.display = "flex";
+  }
 
-</body>
-</html>
+  function changeShirtColor() {
+    const selectedColor =
+      document.getElementById("shirtColor").value;
+
+    document.getElementById("shirt").style.background =
+      selectedColor;
+  }
+
+  function showTemplates() {
+    const panel =
+      document.getElementById("templatePanel");
+
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  }
+
+  function chooseTemplate(template) {
+    const clothing =
+      document.getElementById("shirt");
+
+    clothing.classList.remove("dress", "hoodie");
+
+    if (template === "dress") {
+      clothing.classList.add("dress");
+    }
+
+    if (template === "hoodie") {
+      clothing.classList.add("hoodie");
+    }
+  }
+</script>
+
+  
