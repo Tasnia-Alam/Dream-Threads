@@ -366,9 +366,24 @@
       <aside class="sidebar">
         <h2>Creative Tools</h2>
 
-        <button class="tool-button">
-          👕 Templates
-        </button>
+        <button class="tool-button" onclick="showTemplates()">
+  👕 Templates
+</button>
+        <div id="templatePanel" class="tool-panel">
+
+  <button onclick="chooseTemplate('shirt')">
+    👕 T-Shirt
+  </button>
+
+  <button onclick="chooseTemplate('dress')">
+    👗 Dress
+  </button>
+
+  <button onclick="chooseTemplate('hoodie')">
+    🧥 Hoodie
+  </button>
+
+</div>
 
         <button class="tool-button">
           ✏️ Draw
@@ -441,8 +456,25 @@
       const selectedColor =
         document.getElementById("shirtColor").value;
 
-      document.getElementById("shirt").style.background =
-        selectedColor;
+     document.getElementById("shirt").style.background =
+    selectedColor;
+}
+      function showTemplates() {
+
+  const panel = document.getElementById("templatePanel");
+
+
+  if (panel.style.display === "block") {
+
+    panel.style.display = "none";
+
+  } else {
+
+    panel.style.display = "block";
+
+  }
+
+}
     }
   </script>
 
