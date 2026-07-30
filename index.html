@@ -916,20 +916,59 @@
 
         <!-- DRAW -->
 
-        <button
-          class="tool-button"
-          onclick="showMessage('Drawing tools are coming next!')"
-        >
-          <span class="line-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="m4 20 4-1 11-11-3-3L5 16l-1 4Z"></path>
-              <path d="m14 7 3 3"></path>
-            </svg>
-          </span>
+<button
+  class="tool-button"
+  id="drawButton"
+  onclick="toggleDrawPanel()"
+>
+  <span class="line-icon">
+    <svg viewBox="0 0 24 24">
+      <path d="m4 20 4-1 11-11-3-3L5 16l-1 4Z"></path>
+      <path d="m14 7 3 3"></path>
+    </svg>
+  </span>
 
-          Draw
-        </button>
+  Draw
+</button>
 
+<div
+  id="drawPanel"
+  class="tool-panel"
+>
+
+  <p style="margin-top:0;font-weight:bold;">
+    Drawing Studio
+  </p>
+
+  <label>Brush Color</label>
+
+  <input
+    type="color"
+    id="brushColor"
+    value="#9b5f83"
+    style="width:100%;height:40px;"
+  >
+
+  <br><br>
+
+  <label>Brush Size</label>
+
+  <input
+    type="range"
+    id="brushSize"
+    min="2"
+    max="25"
+    value="6"
+    style="width:100%;"
+  >
+
+  <br><br>
+
+  <button onclick="clearDrawing()">
+    Clear Drawing
+  </button>
+
+</div>
         <!-- FABRICS -->
 
         <button
