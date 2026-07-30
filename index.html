@@ -1033,6 +1033,8 @@
 >
   🧵 Cotton Fabric
 </button>
+         
+</div>
 
         <!-- DECORATIONS -->
 
@@ -1252,9 +1254,32 @@
     }
 
     function chooseFabric(fabric) {
+  const garment =
+    document.getElementById("garment");
 
-  showMessage(fabric + " fabric selected!");
+  if (fabric === "cotton") {
+    garment.style.setProperty(
+      "--garment-color",
+      `
+        repeating-linear-gradient(
+          0deg,
+          rgba(255, 255, 255, 0.18) 0px,
+          rgba(255, 255, 255, 0.18) 1px,
+          rgba(225, 215, 220, 0.20) 1px,
+          rgba(225, 215, 220, 0.20) 2px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          #f8f5f3 0px,
+          #f8f5f3 2px,
+          #eee8e6 2px,
+          #eee8e6 4px
+        )
+      `
+    );
 
+    showMessage("Cotton fabric applied!");
+  }
 }
 
     function toggleDrawPanel() {
