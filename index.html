@@ -566,6 +566,25 @@
        GARMENTS
        ========================= */
 
+    #drawingCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: 5;
+  cursor: crosshair;
+
+  pointer-events: none;
+  touch-action: none;
+}
+
+.garment.draw-active #drawingCanvas {
+  pointer-events: auto;
+}
+
     .garment {
       --garment-color: #ffffff;
 
@@ -1079,6 +1098,9 @@
               class="garment"
               id="garment"
             >
+             
+              <canvas id="drawingCanvas"></canvas> 
+             
               <div class="neck"></div>
 
               <div class="garment-message">
@@ -1202,12 +1224,15 @@
 
     function toggleDrawPanel() {
   const panel = document.getElementById("drawPanel");
+  const garment = document.getElementById("garment");
 
   if (panel.style.display === "block") {
     panel.style.display = "none";
+    garment.classList.remove("draw-active");
     showMessage("Drawing tools closed.");
   } else {
     panel.style.display = "block";
+    garment.classList.add("draw-active");
     showMessage("Drawing tools opened!");
   }
 }
@@ -1228,6 +1253,75 @@
         );
       }
     }
+const drawingCanvas = document.getElementById("drawingCanvas");
+const drawingContext = drawingCanvas.getContext("2d");
+
+let isDrawing = false;
+
+function resizeDrawingCanvas() {
+  drawingCanvas.width = drawingCanvas.offsetWidth;
+  drawingCanvas.height = drawingCanvas.offsetHeight;
+
+  drawingContext.lineCap = "round";
+  drawingContext.lineJoin = "round";
+}
+
+function startDrawing(event) {
+  isDrawing = true;
+
+  const canvasBox = drawingCanvas.getBoundingClientRect();
+
+  drawingContext.beginPath();
+  drawingContext.moveTo(
+    event.clientX - canvasBox.left,
+    event.clientY - canvasBox.top
+  );
+}
+
+function drawOnGarment(event) {
+  if (!isDrawing) {
+    return;
+  }
+
+  const canvasBox = drawingCanvas.getBoundingClientRect();
+  const brushColor = document.getElementById("brushColor").value;
+  const brushSize = document.getElementById("brushSize").value;
+
+  drawingContext.strokeStyle = brushColor;
+  drawingContext.lineWidth = brushSize;
+
+  drawingContext.lineTo(
+    event.clientX - canvasBox.left,
+    event.clientY - canvasBox.top
+  );
+
+  drawingContext.stroke();
+}
+
+function stopDrawing() {
+  isDrawing = false;
+  drawingContext.closePath();
+}
+
+function clearDrawing() {
+  drawingContext.clearRect(
+    0,
+    0,
+    drawingCanvas.width,
+    drawingCanvas.height
+  );
+
+  showMessage("Drawing cleared.");
+}
+
+drawingCanvas.addEventListener("pointerdown", startDrawing);
+drawingCanvas.addEventListener("pointermove", drawOnGarment);
+drawingCanvas.addEventListener("pointerup", stopDrawing);
+drawingCanvas.addEventListener("pointerleave", stopDrawing);
+
+window.addEventListener("load", resizeDrawingCanvas);
+window.addEventListener("resize", resizeDrawingCanvas);
+    
   </script>
 
 </body>
