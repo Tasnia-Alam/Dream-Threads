@@ -1200,6 +1200,18 @@
       ).textContent = message;
     }
 
+    function toggleDrawPanel() {
+  const panel = document.getElementById("drawPanel");
+
+  if (panel.style.display === "block") {
+    panel.style.display = "none";
+    showMessage("Drawing tools closed.");
+  } else {
+    panel.style.display = "block";
+    showMessage("Drawing tools opened!");
+  }
+}
+
     function openUpload() {
       document.getElementById(
         "imageUpload"
