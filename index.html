@@ -1012,7 +1012,27 @@
   <p style="margin-top:0;font-weight:bold;">
     Fabric Library
   </p>
-</div>
+   <input
+  type="search"
+  id="fabricSearch"
+  placeholder="🔍 Search fabrics..."
+  style="
+    width:100%;
+    padding:10px 14px;
+    border:1px solid #ead7e3;
+    border-radius:14px;
+    font-size:14px;
+    outline:none;
+    margin-top:8px;
+    margin-bottom:10px;
+  "
+>  
+<button
+  class="template-choice"
+  onclick="chooseFabric('cotton')"
+>
+  🧵 Cotton Fabric
+</button>
 
         <!-- DECORATIONS -->
 
@@ -1230,6 +1250,12 @@
         "statusMessage"
       ).textContent = message;
     }
+
+    function chooseFabric(fabric) {
+
+  showMessage(fabric + " fabric selected!");
+
+}
 
     function toggleDrawPanel() {
   const panel = document.getElementById("drawPanel");
