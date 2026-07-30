@@ -992,7 +992,7 @@
 
         <button
           class="tool-button"
-          onclick="showMessage('Fabric patterns are coming soon!')"
+          onclick="toggleFabricPanel()"
         >
           <span class="line-icon">
             <svg viewBox="0 0 24 24">
@@ -1004,6 +1004,15 @@
 
           Fabrics
         </button>
+
+        <div
+  id="fabricPanel"
+  class="tool-panel"
+>
+  <p style="margin-top:0;font-weight:bold;">
+    Fabric Library
+  </p>
+</div>
 
         <!-- DECORATIONS -->
 
@@ -1351,6 +1360,16 @@ function clearDrawing() {
 
   showMessage("Drawing cleared.");
 }
+
+  function toggleFabricPanel() {
+  const panel = document.getElementById("fabricPanel");
+
+  if (panel.style.display === "block") {
+    panel.style.display = "none";
+  } else {
+    panel.style.display = "block";
+  }
+}  
 
 drawingCanvas.addEventListener("pointerdown", startDrawing);
 drawingCanvas.addEventListener("pointermove", drawOnGarment);
