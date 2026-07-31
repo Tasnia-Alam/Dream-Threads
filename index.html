@@ -1039,11 +1039,53 @@
   🧵 Cotton Fabric
 </button>
 
-          <button
-    class="template-choice"
-    onclick="chooseFabric('denim')"
+<button
+  class="template-choice"
+  onclick="chooseFabric('denim')"
 >
-    👖 Denim Fabric
+  👖 Denim Fabric
+</button>
+
+<button
+  class="template-choice"
+  onclick="chooseFabric('linen')"
+>
+  🌿 Linen Fabric
+</button>
+
+<button
+  class="template-choice"
+  onclick="chooseFabric('satin')"
+>
+  ✨ Satin Fabric
+</button>
+
+<button
+  class="template-choice"
+  onclick="chooseFabric('velvet')"
+>
+  💎 Velvet Fabric
+</button>
+
+<button
+  class="template-choice"
+  onclick="chooseFabric('leather')"
+>
+  🖤 Leather Fabric
+</button>
+
+<button
+  class="template-choice"
+  onclick="chooseFabric('knit')"
+>
+  🧶 Knit Fabric
+</button>
+
+<button
+  class="template-choice"
+  onclick="chooseFabric('floral')"
+>
+  🌸 Floral Fabric
 </button>
          
 </div>
@@ -1307,6 +1349,145 @@ function chooseFabric(fabric) {
     );
 
     showMessage("Denim fabric applied!");
+  }
+
+  else if (fabric === "linen") {
+    garment.style.setProperty(
+      "--fabric-texture",
+      `
+        repeating-linear-gradient(
+          0deg,
+          rgba(90,70,50,0.15) 0px,
+          rgba(90,70,50,0.15) 1px,
+          transparent 1px,
+          transparent 5px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          rgba(255,255,255,0.22) 0px,
+          rgba(255,255,255,0.22) 1px,
+          transparent 1px,
+          transparent 7px
+        )
+      `
+    );
+
+    showMessage("Linen fabric applied!");
+  }
+
+  else if (fabric === "satin") {
+    garment.style.setProperty(
+      "--fabric-texture",
+      `
+        linear-gradient(
+          120deg,
+          transparent 0%,
+          rgba(255,255,255,0.15) 30%,
+          rgba(255,255,255,0.6) 48%,
+          rgba(255,255,255,0.15) 65%,
+          transparent 100%
+        )
+      `
+    );
+
+    showMessage("Satin fabric applied!");
+  }
+
+  else if (fabric === "velvet") {
+    garment.style.setProperty(
+      "--fabric-texture",
+      `
+        radial-gradient(
+          circle at 30% 25%,
+          rgba(255,255,255,0.15),
+          transparent 35%
+        ),
+        linear-gradient(
+          135deg,
+          rgba(0,0,0,0.22),
+          transparent 45%,
+          rgba(255,255,255,0.1)
+        )
+      `
+    );
+
+    showMessage("Velvet fabric applied!");
+  }
+
+  else if (fabric === "leather") {
+    garment.style.setProperty(
+      "--fabric-texture",
+      `
+        radial-gradient(
+          circle at 20% 30%,
+          rgba(255,255,255,0.1) 0px,
+          transparent 3px
+        ),
+        radial-gradient(
+          circle at 75% 65%,
+          rgba(0,0,0,0.15) 0px,
+          transparent 4px
+        ),
+        linear-gradient(
+          135deg,
+          rgba(255,255,255,0.08),
+          rgba(0,0,0,0.18)
+        )
+      `
+    );
+
+    showMessage("Leather fabric applied!");
+  }
+
+  else if (fabric === "knit") {
+    garment.style.setProperty(
+      "--fabric-texture",
+      `
+        repeating-radial-gradient(
+          ellipse at center,
+          rgba(255,255,255,0.16) 0px,
+          rgba(255,255,255,0.16) 2px,
+          transparent 2px,
+          transparent 7px
+        )
+      `
+    );
+
+    showMessage("Knit fabric applied!");
+  }
+
+  else if (fabric === "floral") {
+    garment.style.setProperty(
+      "--fabric-texture",
+      `
+        radial-gradient(
+          circle at 20% 25%,
+          rgba(255,255,255,0.65) 0px,
+          rgba(255,255,255,0.65) 5px,
+          transparent 6px
+        ),
+        radial-gradient(
+          circle at 25% 30%,
+          rgba(255,160,190,0.65) 0px,
+          rgba(255,160,190,0.65) 4px,
+          transparent 5px
+        ),
+        radial-gradient(
+          circle at 70% 70%,
+          rgba(255,255,255,0.65) 0px,
+          rgba(255,255,255,0.65) 5px,
+          transparent 6px
+        ),
+        radial-gradient(
+          circle at 75% 75%,
+          rgba(255,160,190,0.65) 0px,
+          rgba(255,160,190,0.65) 4px,
+          transparent 5px
+        )
+      `
+    );
+
+    showMessage("Floral fabric applied!");
   }
 }
 
