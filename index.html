@@ -1038,6 +1038,13 @@
 >
   🧵 Cotton Fabric
 </button>
+
+          <button
+    class="template-choice"
+    onclick="chooseFabric('denim')"
+>
+    👖 Denim Fabric
+</button>
          
 </div>
 
@@ -1258,32 +1265,48 @@
       ).textContent = message;
     }
 
-    function chooseFabric(fabric) {
-  const garment =
-    document.getElementById("garment");
+function chooseFabric(fabric) {
+  const garment = document.getElementById("garment");
 
   if (fabric === "cotton") {
     garment.style.setProperty(
-  "--fabric-texture",
+      "--fabric-texture",
       `
         repeating-linear-gradient(
-  0deg,
-  rgba(120,100,110,0.16) 0px,
-  rgba(120,100,110,0.16) 1px,
-  transparent 1px,
-  transparent 3px
-),
-repeating-linear-gradient(
-  90deg,
-  rgba(255,255,255,0.35) 0px,
-  rgba(255,255,255,0.35) 1px,
-  transparent 1px,
-  transparent 3px
-  )
- `
+          0deg,
+          rgba(120,100,110,0.16) 0px,
+          rgba(120,100,110,0.16) 1px,
+          transparent 1px,
+          transparent 3px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          rgba(255,255,255,0.35) 0px,
+          rgba(255,255,255,0.35) 1px,
+          transparent 1px,
+          transparent 3px
+        )
+      `
     );
 
     showMessage("Cotton fabric applied!");
+  }
+
+  else if (fabric === "denim") {
+    garment.style.setProperty(
+      "--fabric-texture",
+      `
+        repeating-linear-gradient(
+          45deg,
+          rgba(255,255,255,0.18) 0px,
+          rgba(255,255,255,0.18) 2px,
+          transparent 2px,
+          transparent 6px
+        )
+      `
+    );
+
+    showMessage("Denim fabric applied!");
   }
 }
 
