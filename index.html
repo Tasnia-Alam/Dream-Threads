@@ -586,7 +586,8 @@
 }
 
     .garment {
-      --garment-color: #ffffff;
+  --garment-color: #ffffff;
+  --fabric-texture: none;
 
       position: relative;
 
@@ -596,7 +597,9 @@
       border: 1px solid rgba(210, 195, 210, 0.35);
       border-radius: 38px 38px 60px 60px;
 
-      background: var(--garment-color);
+     background:
+  var(--fabric-texture),
+  var(--garment-color);
       box-shadow: 0 20px 38px rgba(90, 75, 100, 0.18);
 
       transition:
@@ -619,7 +622,9 @@
       border: 1px solid rgba(210, 195, 210, 0.22);
       border-radius: 35px;
 
-      background: var(--garment-color);
+      background:
+  var(--fabric-texture),
+  var(--garment-color);
       z-index: -1;
     }
 
