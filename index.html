@@ -613,6 +613,8 @@
   cursor: grab;
 
   pointer-events: auto;
+  touch-action: none;
+  user-select: none;
 }
 
     .garment {
@@ -1126,7 +1128,7 @@
 
         <button
           class="tool-button"
-          onclick="addPearl()"
+          onclick="toggleDecorationPanel()"
         >
           <span class="line-icon">
             <svg viewBox="0 0 24 24">
@@ -1136,6 +1138,24 @@
 
           Decorations
         </button>
+
+        <div
+  id="decorationPanel"
+  class="tool-panel"
+>
+
+  <p style="margin-top:0;font-weight:bold;">
+    Decoration Library
+  </p>
+
+          <button
+  class="template-choice"
+  onclick="addPearl()"
+>
+  🤍 Pearl
+</button>
+
+</div>
 
         <!-- UPLOAD -->
 
@@ -1665,6 +1685,23 @@ function clearDrawing() {
   }
 }  
 
+    function toggleDecorationPanel() {
+
+  const panel =
+    document.getElementById("decorationPanel");
+
+  if (panel.style.display === "block") {
+
+    panel.style.display = "none";
+
+  } else {
+
+    panel.style.display = "block";
+
+  }
+
+}
+
 drawingCanvas.addEventListener("pointerdown", startDrawing);
 drawingCanvas.addEventListener("pointermove", drawOnGarment);
 drawingCanvas.addEventListener("pointerup", stopDrawing);
@@ -1688,7 +1725,62 @@ window.addEventListener("resize", resizeDrawingCanvas);
 
   layer.appendChild(pearl);
 
+   makeDecorationDraggable(pearl);
+
   showMessage("Pearl added!");
+}
+
+    function makeDecorationDraggable(decoration) {
+  let dragging = false;
+  let offsetX = 0;
+  let offsetY = 0;
+
+  decoration.addEventListener("pointerdown", function (event) {
+    dragging = true;
+
+    const decorationBox =
+      decoration.getBoundingClientRect();
+
+    offsetX =
+      event.clientX - decorationBox.left;
+
+    offsetY =
+      event.clientY - decorationBox.top;
+
+    decoration.setPointerCapture(event.pointerId);
+  });
+
+  decoration.addEventListener("pointermove", function (event) {
+    if (!dragging) {
+      return;
+    }
+
+    const layer =
+      document.getElementById("decorationLayer");
+
+    const layerBox =
+      layer.getBoundingClientRect();
+
+    decoration.style.left =
+      event.clientX -
+      layerBox.left -
+      offsetX +
+      "px";
+
+    decoration.style.top =
+      event.clientY -
+      layerBox.top -
+      offsetY +
+      "px";
+  });
+
+  decoration.addEventListener("pointerup", function () {
+    dragging = false;
+  });
+
+  decoration.addEventListener("pointercancel", function () {
+    dragging = false;
+  });
 }
     
   </script>
