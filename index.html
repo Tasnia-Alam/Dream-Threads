@@ -585,11 +585,43 @@
   pointer-events: auto;
 }
 
+    #decorationLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+
+  pointer-events: none;
+}
+
+    .pearl {
+  position: absolute;
+
+  width: 18px;
+  height: 18px;
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle at 30% 30%,
+    white,
+    #f5f5f5 45%,
+    #d7d7d7 100%
+  );
+
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+
+  cursor: grab;
+
+  pointer-events: auto;
+}
+
     .garment {
   --garment-color: #ffffff;
   --fabric-texture: none;
 
       position: relative;
+
+      overflow: hidden;
 
       width: 300px;
       height: 345px;
@@ -1094,7 +1126,7 @@
 
         <button
           class="tool-button"
-          onclick="showMessage('Decorations will be added soon!')"
+          onclick="addPearl()"
         >
           <span class="line-icon">
             <svg viewBox="0 0 24 24">
@@ -1185,6 +1217,8 @@
             >
              
               <canvas id="drawingCanvas"></canvas> 
+
+              <div id="decorationLayer"></div>
              
               <div class="neck"></div>
 
@@ -1638,6 +1672,24 @@ drawingCanvas.addEventListener("pointercancel", stopDrawing);
 
 window.addEventListener("load", resizeDrawingCanvas);
 window.addEventListener("resize", resizeDrawingCanvas);
+
+  function addPearl() {
+
+  const layer =
+    document.getElementById("decorationLayer");
+
+  const pearl =
+    document.createElement("div");
+
+  pearl.className = "pearl";
+
+  pearl.style.left = "140px";
+  pearl.style.top = "150px";
+
+  layer.appendChild(pearl);
+
+  showMessage("Pearl added!");
+}
     
   </script>
 
